@@ -14,10 +14,12 @@ import com.kader.newsapp.model.Article
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
-    lateinit var contextAdapter : Context
-    inner class ArticleViewHolder(var binding : ItemListArticleBinding) : RecyclerView.ViewHolder(binding.root)
+    lateinit var contextAdapter: Context
 
-    private val diffCallback = object : DiffUtil.ItemCallback<Article>(){
+    inner class ArticleViewHolder(var binding: ItemListArticleBinding) :
+        RecyclerView.ViewHolder(binding.root)
+
+    private val diffCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
             return oldItem.url == newItem.url
         }
@@ -27,12 +29,12 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         }
 
     }
-    val differ = AsyncListDiffer(this,diffCallback)
+    val differ = AsyncListDiffer(this, diffCallback)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         val inflater = ItemListArticleBinding.inflate(
-            LayoutInflater.from(parent.context)
-            ,parent,
-            false)
+            LayoutInflater.from(parent.context), parent,
+            false
+        )
         contextAdapter = parent.context
         return ArticleViewHolder(inflater)
     }
@@ -55,9 +57,10 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
             }
         }
     }
-    private var onItemClickListener : ((Article) -> Unit)? = null
 
-    fun setOnCLickListener(listener : (Article) -> Unit){
+    private var onItemClickListener: ((Article) -> Unit)? = null
+
+    fun setOnCLickListener(listener: (Article) -> Unit) {
         onItemClickListener = listener
     }
 

@@ -16,15 +16,20 @@ class NewsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNewsBinding
     private lateinit var navController: NavController
-    lateinit var viewModel: NewsViewModel
+
+    private val newsRepository by lazy { NewsRepository(ArticleDatabase(this)) }
+    val viewModel by lazy {
+        ViewModelProvider(
+            this,
+            NewsViewModelProviderFactory(newsRepository)
+        ).get(NewsViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNewsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val newsRepository=NewsRepository(ArticleDatabase(this))
-        val viewModelProviderFactory=NewsViewModelProviderFactory(newsRepository)
-        viewModel=ViewModelProvider(this,viewModelProviderFactory).get(NewsViewModel::class.java)
         navController = findNavController(R.id.nav_host_fragment)
         binding.bottomNavigationView.setupWithNavController(navController)
     }

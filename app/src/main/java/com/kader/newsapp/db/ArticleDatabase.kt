@@ -16,6 +16,7 @@ abstract class ArticleDatabase : RoomDatabase() {
 
     abstract fun getArticleDao(): ArticleDao
 
+    //Singleton
     companion object {
         @Volatile
         private var instance: ArticleDatabase? = null

@@ -1,14 +1,17 @@
 package com.kader.newsapp.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.kader.newsapp.R
 import com.kader.newsapp.databinding.FragmentArticleBinding
 import com.kader.newsapp.databinding.FragmentBreakingNewsBinding
 import com.kader.newsapp.databinding.FragmentSearchNewsBinding
+import com.kader.newsapp.model.Article
 import com.kader.newsapp.ui.NewsActivity
 import com.kader.newsapp.ui.NewsViewModel
 
@@ -29,6 +32,6 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel=(activity as NewsActivity).viewModel
+        viewModel = (activity as NewsActivity).viewModel
     }
 }
