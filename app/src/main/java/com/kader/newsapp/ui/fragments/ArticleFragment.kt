@@ -33,5 +33,21 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = (activity as NewsActivity).viewModel
+
+        val clickedArticle = arguments?.getSerializable("article") as? Article
+
+        if (clickedArticle != null) {
+            Log.i("tag123", "Article URL: ${clickedArticle.url}")
+            binding.webView.apply {
+                webViewClient = WebViewClient()
+                loadUrl(clickedArticle.url)
+            }
+        } else {
+            Log.e("ArticleFragment", "Article is null. Unable to load URL.")
+            binding.webView.apply {
+                webViewClient = WebViewClient()
+                loadUrl("about:blank")
+            }
+        }
     }
 }

@@ -40,6 +40,9 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
         setupRecyclerView()
 
+
+
+
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
                 is Resource.Success -> {
@@ -72,7 +75,18 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     }
 
     private fun setupRecyclerView() {
-        newsAdapter = NewsAdapter()
+        newsAdapter = NewsAdapter { clickedArticle ->
+            Log.i("ass", "asss")
+            val bundle = Bundle().apply {
+                putSerializable("article", clickedArticle)
+            }
+            val articleFragment = ArticleFragment()
+            articleFragment.arguments = bundle
+            requireActivity().supportFragmentManager.beginTransaction()
+                .add(R.id.nav_host_fragment, articleFragment)
+                .addToBackStack(null)
+                .commit()
+        }
         binding.rvBreakingNews.apply {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(activity)

@@ -1,6 +1,7 @@
 package com.kader.newsapp.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,8 @@ import com.kader.newsapp.R
 import com.kader.newsapp.databinding.ItemListArticleBinding
 import com.kader.newsapp.model.Article
 
-class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
+class NewsAdapter(private var onItemClickListener: ((Article) -> Unit)) :
+    RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     lateinit var contextAdapter: Context
 
@@ -52,16 +54,14 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
             tvTitle.text = article.title
             tvPublishedAt.text = article.publishedAt
 
-            setOnCLickListener {
+            root.setOnClickListener {
+                Log.i("asdf", "assd")
+
                 onItemClickListener?.let { it(article) }
+
             }
+
         }
-    }
-
-    private var onItemClickListener: ((Article) -> Unit)? = null
-
-    fun setOnCLickListener(listener: (Article) -> Unit) {
-        onItemClickListener = listener
     }
 
 }
