@@ -41,7 +41,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
             Log.i("tag123", "Article URL: ${clickedArticle.url}")
             binding.webView.apply {
                 webViewClient = WebViewClient()
-                loadUrl(clickedArticle.url)
+                loadUrl(clickedArticle.url ?: "about:blank")
             }
         } else {
             Log.e("ArticleFragment", "Article is null. Unable to load URL.")
@@ -50,6 +50,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
                 loadUrl("about:blank")
             }
         }
+
 
         binding.fab.setOnClickListener {
             clickedArticle?.let { it1 -> viewModel.saveArticle(it1) }

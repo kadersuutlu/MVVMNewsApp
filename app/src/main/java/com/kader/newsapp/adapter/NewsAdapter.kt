@@ -49,7 +49,7 @@ class NewsAdapter(private var onItemClickListener: ((Article) -> Unit)) :
         val article = differ.currentList[position]
         holder.binding.apply {
             Glide.with(contextAdapter).load(article.urlToImage).into(ivArticleImage)
-            tvSource.text = article.source.name
+            tvSource.text = article.source?.name
             tvDescription.text = article.description
             tvTitle.text = article.title
             tvPublishedAt.text = article.publishedAt
