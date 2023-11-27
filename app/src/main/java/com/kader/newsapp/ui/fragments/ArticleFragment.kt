@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import com.kader.newsapp.R
 import com.kader.newsapp.databinding.FragmentArticleBinding
 import com.kader.newsapp.databinding.FragmentBreakingNewsBinding
@@ -48,6 +49,11 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
                 webViewClient = WebViewClient()
                 loadUrl("about:blank")
             }
+        }
+
+        binding.fab.setOnClickListener {
+            clickedArticle?.let { it1 -> viewModel.saveArticle(it1) }
+            Snackbar.make(view,"Article saved succesfully",Snackbar.LENGTH_SHORT).show()
         }
     }
 }

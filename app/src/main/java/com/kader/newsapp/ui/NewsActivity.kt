@@ -22,7 +22,7 @@ class NewsActivity : AppCompatActivity() {
         ViewModelProvider(
             this,
             NewsViewModelProviderFactory(newsRepository)
-        ).get(NewsViewModel::class.java)
+        )[NewsViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

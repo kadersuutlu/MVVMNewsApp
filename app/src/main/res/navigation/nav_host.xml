@@ -35,7 +35,7 @@
             app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
-        android:id="@+id/savedNewsFragment"
+        android:id="@+id/savedNews"
         android:name="com.kader.newsapp.ui.fragments.SavedNewsFragment"
         android:label="SavedNewsFragment" >
         <action
