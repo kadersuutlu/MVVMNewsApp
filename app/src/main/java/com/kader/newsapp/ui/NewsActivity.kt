@@ -21,7 +21,7 @@ class NewsActivity : AppCompatActivity() {
     val viewModel by lazy {
         ViewModelProvider(
             this,
-            NewsViewModelProviderFactory(newsRepository)
+            NewsViewModelProviderFactory(application,newsRepository)
         )[NewsViewModel::class.java]
     }
 
